@@ -1,0 +1,103 @@
+<html>
+    <head>
+        <title>Array Methods and properties</title>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            //When thepage loads, tis gloable bariable gets intixaized
+            //With the following three elements
+            var nameArray = ["Alice", "Bob", "Carol"];
+
+            console.log(nameArray)
+            
+            // This event handelr function displays the elements
+            // of nameArray located at the index from idTxtNameIndex
+            function showNameAtIndex()
+            {
+                var idx = Number(idTxtNameIndex.value);
+                idDivOutput.innerHTML = nameArray[idx];
+
+            }
+            //This event handler function uses the showarray method
+            //to display all the elements of namearray
+            function showAllNames()
+            {
+                showArray(nameArray);
+            }
+            // This function diplsays all the elemetns of inpout array
+            // in the idDivoutput div
+            function showArray(inputArray)
+            {
+                var arraySize = inputArray.length
+                output = "";
+
+                for (var i = 0; i < arraySize; i++)
+                {
+                    output += inputArray[i] + "<br>";
+
+                }
+
+                idDivOutput.innerHTML = output;
+            }
+
+            function addName()
+            {
+                var name = idTxtName.value
+
+                if(name == "")
+                {
+                    swal("its blank dumbo")
+                }
+                else if(name.length > 0)
+                {
+                   nameArray.push(name)
+                }
+            }
+
+            function deleteName()
+            {
+                var name = idTxtName.value
+
+                if(name == "")
+                {
+                    swal("its blank dumbo")
+                }
+
+                else if(name.length > 0)
+                {
+                    nameArray.filter(function(name)
+                    {
+                        return name !== nameArray
+                        
+                    })
+                    console.log(nameArray)
+                }
+                else if(name != nameArray[0] || nameArray[1] || nameArray[2] || nameArray[3]|| nameArray[4] || nameArray[5]|| nameArray[6]|| nameArray[7] )
+                {
+                    swal("Your name is not in the array")
+                }
+            }
+        </script>
+    </head>
+
+
+    <body>
+
+
+        Name: <input type=text id="idTxtName"><br><br>
+        Index: <input type=text id="idTxtNameIndex"><br><br>
+
+        <input type=button value="Show name at index" onclick="showNameAtIndex()">
+        <br><br>
+
+        <input type=button value="Show all Names" onclick="showAllNames()">
+        <br><br>
+
+        <input type=button value="Add Name" onclick="addName()">
+        <br><br>
+
+        <input type=button value="Delete Name" onclick="deleteName()">
+        <br><br>
+
+        <div id="idDivOutput"></div>
+    </body>
+</html>
